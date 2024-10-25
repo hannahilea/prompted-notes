@@ -21,15 +21,16 @@ function prompt_reflection(; dir=DEFAULT_SAVE_DIR)
     mkpath(dirname(filepath))
 
     open(filepath; append=true) do io
-        write(io, "Date\t$date\t")
-
-        ask! = (label, question; default="") -> begin
+        ask! = (label, question; default="", required=false) -> begin
             a = Base.prompt(question; default)
+            while required && isempty(a)
+                a = Base.prompt(question; default)
+            end
             write(io, "$label\t$a\n")
             return a
         end
 
-        what = ask!("What", "What are you stalling on?")
+        what = ask!("What", "What are you stalling on?"; required=true)
         ask!("When", "How long have you been stalling on $what?")
         ask!("Why", "Why are you stalling on $what?")
         ask!("Who", "Who is affected by you stalling on $what?")
@@ -37,7 +38,8 @@ function prompt_reflection(; dir=DEFAULT_SAVE_DIR)
         ask!("Notes", "Anything else worth noting?"; default="N/A")
     end
     
-    println("Thank you for your reflection! Saved to `$(filepath)`")
+    println("Thank you for your reflection!")
+    println("/t-> Saved to `$(filepath)`")
     sleep(3)
     return nothing
 end
@@ -50,7 +52,7 @@ function summarize(dir=DEFAULT_SAVE_DIR)
 end
 
 function julia_main()::Cint
-    @info "Hi there! :)"
+    println("Hi there! :)")
     if length(ARGS) == 0
         prompt_reflection()
     elseif length(ARGS) == 1 && contains(lowercase(first(ARGS)), "success")

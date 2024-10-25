@@ -28,4 +28,4 @@ From this directory, do
 $ julia compile.jl 
 ```
 
-App (to double-click) will be generated in StallNotesCompiled/bin.
+App (to double-click) will be generated in StallNotesApp/bin.
