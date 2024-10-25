@@ -81,6 +81,7 @@ function julia_main()::Cint
     else
         @warn "Argument(s) `$ARGS` not supported; use no arguments to reflect, single `success` to write a success note!"
     end
+    Base.prompt("(Hit any key to close)")
     return 0 # if things finished successfully
 end
 
