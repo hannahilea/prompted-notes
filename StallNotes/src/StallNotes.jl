@@ -37,11 +37,11 @@ function prompt_reflection(; dir=DEFAULT_SAVE_DIR)
         ask!("Why", "Why are you stalling on $what?")
         ask!("Who", "Who is affected by you stalling on $what?")
         ask!("Step", "What is the smallest first step(s) you could take towards $what?")
-        ask!("Notes", "Anything else worth noting?"; default="N/A")
+        return ask!("Notes", "Anything else worth noting?"; default="N/A")
     end
-    
+
     println("Thank you for your reflection!")
-    println("/t-> Saved to `$(filepath)`")
+    println("\t-> Saved to `$(filepath)`")
     sleep(3)
     return nothing
 end
@@ -60,10 +60,11 @@ function wordcloud_from_posts(paths)
 end
 
 function summarize(dir=DEFAULT_SAVE_DIR)
+    println("Analyzing posts in $dir...")
     stalls = filter(f -> startswith(f, "stall-"), readdir(dir))
     successes = filter(f -> startswith(f, "success-"), readdir(dir))
-    
-    @info "Summary:" stalls=length(stalls) successes=length(successes) dir
+
+    @info "Summary:" stalls = length(stalls) successes = length(successes) dir
     wordcloud_from_posts(map(p -> joinpath(dir, p), stalls))
     wordcloud_from_posts(map(p -> joinpath(dir, p), successes))
     return nothing
@@ -80,6 +81,12 @@ function julia_main()::Cint
     else
         @warn "Argument(s) `$ARGS` not supported; use no arguments to reflect, single `success` to write a success note!"
     end
+    return 0 # if things finished successfully
+end
+
+function summarize_posts()::Cint
+    summarize()
+    Base.prompt("(Hit any key to close)")
     return 0 # if things finished successfully
 end
 

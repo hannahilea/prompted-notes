@@ -27,14 +27,13 @@ Functionality lives in [`StallNotes/src/StallNotes.jl`](StallNotes/src/StallNote
 
 To compile StallNotes.jl library to an executable app, do
 ```
-$ julia compile.jl 
+$ julia --startup-file=no compile.jl 
 ```
 The resultant app (which can be double-clicked to launch the user's default terminal) will be generated in `StallNotesApp/bin`.
 
 ### Future dev 
-- [ ] Add "success" whatever
-- [ ] Use [WordCloud.jl](https://github.com/guo-yong-zhi/WordCloud.jl) to show contents of notes 
-- [ ] Summarize could do more---show stuff over time, etc? Or display all contents
 - [ ] Generate question fields from a template (i.e., generic enough to support success/stall/other)
+- [ ] Add "success" whatever
+- [x] Use [WordCloud.jl](https://github.com/guo-yong-zhi/WordCloud.jl) to show contents of notes 
+- [ ] Summarize could do more---show stuff over time, etc? Or display all contents
 - [ ] Try remaking in, e.g., Rust!
-- [ ] Some form of something on screen on completion? gold star? 
