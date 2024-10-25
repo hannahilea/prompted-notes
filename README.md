@@ -37,3 +37,4 @@ The resultant app (which can be double-clicked to launch the user's default term
 - [ ] Summarize could do more---show stuff over time, etc? Or display all contents
 - [ ] Generate question fields from a template (i.e., generic enough to support success/stall/other)
 - [ ] Try remaking in, e.g., Rust!
+- [ ] Some form of something on screen on completion? gold star? 
