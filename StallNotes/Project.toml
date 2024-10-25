@@ -1,0 +1,7 @@
+name = "StallNotes"
+uuid = "0ffcbbeb-2328-4adf-ad62-d5cbb8267561"
+authors = ["hannahilea <hannahilea@users.noreply.github.com>"]
+version = "0.1.0"
+
+[deps]
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"

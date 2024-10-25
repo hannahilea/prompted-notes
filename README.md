@@ -4,7 +4,7 @@ Stall even harder by reflecting on why you're stalling! (Or let yourself be unbl
 
 ## Usage
 
-Can be run from wherever, update run.jl to path/to/run.jl accordingly. Notes saved to `~/Desktop/stall-notes/`; update `DEFAULT_SAVE_DIR` in run.jl to change path. 
+Can be run from wherever, update run.jl to path/to/run.jl accordingly. Notes saved to `~/Desktop/stall-notes/`; update `DEFAULT_SAVE_DIR` to change path. 
 
 Reflect on stalling:
 ```
@@ -20,3 +20,12 @@ Add a note after succeeding at a stalled task:
 ```
 $ julia run.jl success
 ```
+
+## Development 
+
+From this directory, do 
+```
+$ julia compile.jl 
+```
+
+App (to double-click) will be generated in StallNotesCompiled/bin.
