@@ -1,0 +1,23 @@
+prefix: stall
+opening-comment: Welcome! Let's reflect.
+closing-comment: Thank you for your reflection!
+questions:
+  - label: What
+    required: true
+    prompt: What are you stalling on?
+
+  - label: When
+    required: false
+    prompt: How long have you been stalling on {{ What }}?
+
+  - label: Why
+    prompt: Why are you stalling on {{ What }}?
+
+  - label: Who
+    prompt: Who is affected by you stalling on {{ What }}?
+
+  - label: Step
+    prompt: What is the smallest first step(s) you could take towards {{ What }}?
+ 
+  - label: Notes
+    prompt: Anything else worth noting?
