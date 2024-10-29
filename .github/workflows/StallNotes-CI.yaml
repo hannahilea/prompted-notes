@@ -18,7 +18,7 @@ jobs:
   test:
     # Run on push's or non-draft PRs
     if: (github.event_name == 'push') || (github.event.pull_request.draft == false) || (github.event_name == 'workflow_dispatch')
-    name: Julia ${{ matrix.version }} - ${{ matrix.runs-on }} - ${{ matrix.threads}} threads - ${{ matrix.arch }} - ${{ github.event_name }}
+    name: Julia ${{ matrix.version }} - ${{ matrix.runs-on }} - ${{ matrix.arch }} - ${{ github.event_name }}
     runs-on: ${{ matrix.runs-on }}
     permissions:
       id-token: write
@@ -48,10 +48,10 @@ jobs:
       - uses: julia-actions/julia-runtest@v1
         with:
           annotate: true
-          project: StallNotes.jl
+          project: StallNotes
       - uses: julia-actions/julia-processcoverage@v1
         with:
-          directories: 'StallNotes.jl/src/'
+          directories: 'StallNotes/src/'
       # - uses: codecov/codecov-action@v4
       #   with:
       #     token: ${{ secrets.CODECOV_TOKEN }}
