@@ -31,6 +31,12 @@ $ julia --startup-file=no compile.jl
 ```
 The resultant app (which can be double-clicked to launch the user's default terminal) will be generated in `StallNotesApp/bin`.
 
+The `_precompile.jl` file was created by starting a session via 
+```
+julia --project=. --trace-compile=_precompile.jl  
+``` 
+and, in that session, running the functions in the main entrypoint. In the future this could be added to the compilation script.
+
 ### Future dev 
 - [ ] Generate question fields from a template (i.e., generic enough to support success/stall/other)
 - [ ] Add "success" whatever
