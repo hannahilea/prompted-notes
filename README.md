@@ -30,16 +30,16 @@ The `compile/_precompile.jl` file was created by starting a session via
 ```
 julia --project=. --trace-compile=compile/_precompile.jl  
 ``` 
-and, in that session, running the functions in the main entrypoint. In the future this could be added to the compilation script.
+and, in that session, running the `summarize` function in the main entrypoint. 
+In the future this could be added as a compilation step; for now, it likely won't 
+change significantly enough to regenerate regularly.
 
 ### Future dev 
-- [ ] make public 
 - [ ] Write to file after each prompt
 - [ ] Add trace-compile to build script
 - [ ] Use default template(s) in output directory, otherwise use default
 - [ ] Support multiple templates per directory
 - [ ] Add docs
-- [ ] Add formatting
 - [ ] Add badges to readme
 - [ ] GHA build/artifacts?
 - [ ] Summarize could do more---show stuff over time, etc? Or display all contents
