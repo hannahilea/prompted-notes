@@ -1,4 +1,4 @@
-module StallNotes
+module PromptedNotes
 
 export load_template, prompt_template
 
@@ -90,7 +90,7 @@ end
 
 function prompt_reflection(; dir=DEFAULT_SAVE_DIR)
     prompt_template(dir;
-                    template_path=joinpath(pkgdir(StallNotes), "templates",
+                    template_path=joinpath(pkgdir(PromptedNotes), "templates",
                                            "default-stall-template.yaml"))
     return nothing
 end
@@ -140,4 +140,4 @@ function summarize_posts()::Cint
     return 0 # if things finished successfully
 end
 
-end # module StallNotes
+end # module PromptedNotes

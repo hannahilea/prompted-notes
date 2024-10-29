@@ -1,3 +1,3 @@
 [deps]
 PackageCompiler = "9b87118b-4619-50d2-8e1e-99f35a4d4d9d"
-StallNotes = "0ffcbbeb-2328-4adf-ad62-d5cbb8267561"
+PromptedNotes = "0ffcbbeb-2328-4adf-ad62-d5cbb8267561"
