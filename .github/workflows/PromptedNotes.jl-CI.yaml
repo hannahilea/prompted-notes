@@ -5,10 +5,10 @@ on:
     branches:
       - main
     tags: ["*"]
-    paths: ["**", ".github/workflows/CI.yaml"]
+    paths: ["**", ".github/workflows/PromptedNotes.jl-CI.yaml"]
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
-    paths: ["**",".github/workflows/CI.yaml"]
+    paths: ["**",".github/workflows/PromptedNotes.jl-CI.yaml"]
 concurrency:
   # Skip intermediate builds: always.
   # Cancel intermediate builds: only if it is a pull request build.
