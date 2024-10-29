@@ -1,14 +1,14 @@
 using Test
-using StallNotes
+using PromptedNotes
 using Aqua
 
-@testset "StallNotes.jl" begin
+@testset "PromptedNotes.jl" begin
     @testset "Aqua" begin
-        Aqua.test_all(StallNotes; ambiguities=false)
+        Aqua.test_all(PromptedNotes; ambiguities=false)
     end
 
     @testset "Basic" begin
-        template_path = joinpath(pkgdir(StallNotes), "templates",
+        template_path = joinpath(pkgdir(PromptedNotes), "templates",
                                  "default-stall-template.yaml")
         t = load_template(template_path)
         @test length(t.questions) == 6

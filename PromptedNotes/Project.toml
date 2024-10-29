@@ -1,4 +1,4 @@
-name = "StallNotes"
+name = "PromptedNotes"
 uuid = "0ffcbbeb-2328-4adf-ad62-d5cbb8267561"
 authors = ["hannahilea <hannahilea@users.noreply.github.com>"]
 version = "0.1.0"

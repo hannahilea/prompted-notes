@@ -1,4 +1,4 @@
-name: StallNotes.jl - CI
+name: PromptedNotes.jl - CI
 on:
   workflow_dispatch:
   push:
@@ -48,11 +48,11 @@ jobs:
       - uses: julia-actions/julia-runtest@v1
         with:
           annotate: true
-          project: StallNotes
+          project: PromptedNotes
       - uses: julia-actions/julia-processcoverage@v1
         with:
-          directories: 'StallNotes/src/'
-      # - uses: codecov/codecov-action@v4
-      #   with:
-      #     token: ${{ secrets.CODECOV_TOKEN }}
-      #     file: lcov.info
+          directories: 'PromptedNotes/src/'
+      - uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: lcov.info
