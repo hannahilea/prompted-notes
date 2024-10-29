@@ -8,7 +8,7 @@ using ImageInTerminal
 using OrderedCollections
 using YAML
 
-const DEFAULT_SAVE_DIR = expanduser(joinpath("~", "Desktop", "stall-notes"))::String
+const DEFAULT_SAVE_DIR = expanduser(joinpath("~", "Desktop", "stall-notes"))
 
 # TODO-future: define Template as Legolas type; load accordingly; will remove many of the 
 # various safety-checks here 
