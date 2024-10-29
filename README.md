@@ -36,6 +36,7 @@ change significantly enough to regenerate regularly.
 
 ### Future dev 
 - [ ] Write to file after each prompt
+- [ ] Add tests to up coverage
 - [ ] Add trace-compile to build script
 - [ ] Use default template(s) in output directory, otherwise use default
 - [ ] Support multiple templates per directory
