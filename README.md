@@ -38,8 +38,15 @@ julia --project=. --trace-compile=_precompile.jl
 and, in that session, running the functions in the main entrypoint. In the future this could be added to the compilation script.
 
 ### Future dev 
-- [ ] Generate question fields from a template (i.e., generic enough to support success/stall/other)
-- [ ] Add "success" whatever
-- [x] Use [WordCloud.jl](https://github.com/guo-yong-zhi/WordCloud.jl) to show contents of notes 
 - [ ] Summarize could do more---show stuff over time, etc? Or display all contents
 - [ ] Try remaking in, e.g., Rust!
+- [ ] Rename library
+- [ ] Add tests
+- [ ] Run tests in CI 
+- [ ] make public 
+- [ ] CI build/artifacts?
+- [ ] Use default template(s) in output directory, otherwise use default
+- [ ] Support multiple templates per directory
+- [ ] Add docs
+- [ ] Add trace-compile to build script
+- [ ] Write to file after each prompt
