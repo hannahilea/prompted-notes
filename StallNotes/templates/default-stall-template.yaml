@@ -7,7 +7,6 @@ questions:
     prompt: What are you stalling on?
 
   - label: When
-    required: false
     prompt: How long have you been stalling on {{ What }}?
 
   - label: Why

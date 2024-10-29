@@ -8,11 +8,7 @@ using ImageInTerminal
 using OrderedCollections
 using YAML
 
-const DEFAULT_SAVE_DIR = expanduser(joinpath("~", "Desktop", "stall-notes"))
-
-function prompt_success(; dir=DEFAULT_SAVE_DIR)
-    @warn "Not yet implemented!"
-end
+const DEFAULT_SAVE_DIR = expanduser(joinpath("~", "Desktop", "stall-notes"))::String
 
 # TODO-future: define Template as Legolas type; load accordingly; will remove many of the 
 # various safety-checks here 
@@ -99,7 +95,7 @@ function prompt_reflection(; dir=DEFAULT_SAVE_DIR)
     return nothing
 end
 
-function wordcloud_from_posts(paths)
+function wordcloud_from_posts(paths::AbstractVector{<:AbstractString})
     lines = map(paths) do p
         answers = YAML.load_file(p; dicttype=OrderedDict)
         return join([v for v in values(answers)], "\n")
@@ -108,17 +104,18 @@ function wordcloud_from_posts(paths)
 
     # See https://github.com/guo-yong-zhi/WordCloud-Gallery/blob/main/README.md 
     # for styling options
-    display(paintcloud(words))
-    return nothing
+    wc = paintcloud(words)
+    display(wc)
+    return wc
 end
 
-function summarize(dir=DEFAULT_SAVE_DIR)
+function summarize(dir::AbstractString)
     println("Analyzing posts in $dir...")
     # Assuming that the date is between 2000 and 2099! Not future proof past then :D 
     paths = filter(f -> contains(f, "-20") && endswith(f, ".yaml"), readdir(dir))
     prefixes = Set(first.(split.(paths, "-20"; limit=2)))
 
-    summary = OrderedDict()
+    summary = OrderedDict{AbstractString,Integer}()
     for prefix in prefixes
         subset = filter(p -> startswith(p, prefix), paths)
         summary[prefix] = length(subset)
@@ -129,24 +126,17 @@ function summarize(dir=DEFAULT_SAVE_DIR)
     return nothing
 end
 
-function julia_main()::Cint
-    println("Hi there! :)")
-    if length(ARGS) == 0
-        prompt_reflection()
-    elseif length(ARGS) == 1 && contains(lowercase(first(ARGS)), "success")
-        prompt_success()
-    elseif length(ARGS) == 1 && contains(lowercase(first(ARGS)), "summar")
-        summarize()
-    else
-        @warn "Argument(s) `$ARGS` not supported; use no arguments to reflect, single `success` to write a success note!"
-    end
-    Base.prompt("(Hit enter to close)")
+function reflect_default()::Cint
+    prompt_reflection(; dir=DEFAULT_SAVE_DIR)
+    println("(Hit `Enter` to close)")
+    readline()
     return 0 # if things finished successfully
 end
 
 function summarize_posts()::Cint
-    summarize()
-    Base.prompt("(Hit enter to close)")
+    summarize(DEFAULT_SAVE_DIR)
+    println("(Hit `Enter` to close)")
+    readline()
     return 0 # if things finished successfully
 end
 
