@@ -1,7 +1,8 @@
 using Pkg
-Pkg.activate(@__DIR__)
-Pkg.resolve()
+Pkg.activate(mktempdir())
+Pkg.develop(; path=joinpath(@__DIR__, "PromptedNotes.jl/"))
 Pkg.instantiate()
+
 using PromptedNotes
 
 if abspath(PROGRAM_FILE) == @__FILE__

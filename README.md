@@ -16,24 +16,19 @@ Summarize existing notes:
 $ julia run.jl summarize
 ```
 
-Add a note after succeeding at a stalled task:
-```
-$ julia run.jl success
-```
-
 ## Development 
 
-Functionality lives in [`PromptedNotes/src/PromptedNotes.jl`](PromptedNotes/src/PromptedNotes.jl).
+Functionality lives in [`PromptedNotes.jl/src/PromptedNotes.jl`](PromptedNotes.jl/src/PromptedNotes.jl).
 
-To compile PromptedNotes.jl library to an executable app, do
+To compile the PromptedNotes.jl library to an app, do
 ```
-$ julia --startup-file=no compile.jl 
+$ julia --startup-file=no compile/run.jl 
 ```
-The resultant app (which can be double-clicked to launch the user's default terminal) will be generated in `PromptedNotesApp/bin`.
+The resultant app(s) (which can be relocated and double-clicked to launch the user's default terminal) will be generated in `PromptedNotesApp/bin`.
 
-The `_precompile.jl` file was created by starting a session via 
+The `compile/_precompile.jl` file was created by starting a session via 
 ```
-julia --project=. --trace-compile=_precompile.jl  
+julia --project=. --trace-compile=compile/_precompile.jl  
 ``` 
 and, in that session, running the functions in the main entrypoint. In the future this could be added to the compilation script.
 
