@@ -34,11 +34,9 @@ and, in that session, running the `summarize` function in the main entrypoint.
 In the future this could be added as a compilation step; for now, it likely won't 
 change significantly enough to regenerate regularly.
 
-### Future dev 
-- [ ] Write to file after each prompt
+### Future dev
 - [ ] Add tests to up coverage
 - [ ] Add trace-compile to build script
-- [ ] Use default template(s) in output directory, otherwise use default
 - [ ] Support multiple templates per directory
 - [ ] Add docs
 - [ ] Add badges to readme
