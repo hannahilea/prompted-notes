@@ -17,7 +17,7 @@ const TESTCASE_DIR = joinpath(pkgdir(PromptedNotes), "test", "testcases")
                       get_template_paths(DEFAULT_TEMPLATE_DIR))
 
         @test isequal(get_single_template(mktempdir()),
-        get_single_template(DEFAULT_TEMPLATE_DIR))
+                      get_single_template(DEFAULT_TEMPLATE_DIR))
 
         dir = joinpath(TESTCASE_DIR, "dir-single-template")
         @test isequal(get_single_template(dir),
