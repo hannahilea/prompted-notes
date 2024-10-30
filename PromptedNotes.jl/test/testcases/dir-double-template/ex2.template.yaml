@@ -1,0 +1,9 @@
+prefix: ex2
+opening-comment: Hi
+closing-comment: Bye
+questions:
+  - label: What
+    prompt: Foo
+
+  - label: When
+    prompt: Bar

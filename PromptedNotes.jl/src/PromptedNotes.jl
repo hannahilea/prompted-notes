@@ -9,6 +9,7 @@ using OrderedCollections
 using YAML
 
 const DEFAULT_SAVE_DIR = expanduser(joinpath("~", "Desktop", "stall-notes"))
+const DEFAULT_TEMPLATE_DIR = joinpath(pkgdir(PromptedNotes), "..", "note-templates")
 
 # TODO-future: define Template as Legolas type; load accordingly; will remove many of the 
 # various safety-checks here 
@@ -36,7 +37,7 @@ function load_template(template_path)
 end
 
 # Note: not doing any yaml validation; if the template file is set up wrong, oh well, game over!
-function prompt_template(dir; template_path)
+function prompt_template(out_dir; template_path)
     # Get input template 
     (; prefix, questions, opening, closing) = load_template(template_path)
 
@@ -46,7 +47,7 @@ function prompt_template(dir; template_path)
 
     # Set up output file
     date = now()
-    filepath = joinpath(dir, "$prefix-$date.yaml")
+    filepath = joinpath(out_dir, "$prefix-$date.yaml")
     while isfile(filepath)
         # Avoid overwriting an existing timestamp
         # Could still run into race condition BUT that is very unlikely 
@@ -88,10 +89,27 @@ function replace_braces(str, dict)
     return str
 end
 
-function prompt_reflection(; dir=DEFAULT_SAVE_DIR)
-    prompt_template(dir;
-                    template_path=joinpath(pkgdir(PromptedNotes), "templates",
-                                           "default-stall-template.yaml"))
+#TODO-do this for real 
+prompt_select_template(template_paths) = first(sort(template_paths))
+
+function get_template_paths(template_dir)
+    paths = filter(p -> endswith(p, ".template.yaml") || endswith(p, ".template.yml"),
+                   readdir(template_dir; join=true))
+    if isempty(paths)
+        paths = filter(p -> endswith(p, ".template.yaml") || endswith(p, ".template.yml"),
+                       readdir(DEFAULT_TEMPLATE_DIR; join=true))
+    end
+    return paths
+end
+
+function prompt_select_template(template_dir)
+    paths = get_template_paths(template_dir)
+    return length(paths) == 1 ? first(paths) : prompt_select_template(paths)
+end
+
+function prompt_reflection(; dir=DEFAULT_SAVE_DIR, template_dir=dir)
+    template_path = select_template(template_dir)
+    prompt_template(dir; template_path)
     return nothing
 end
 
@@ -127,7 +145,7 @@ function summarize(dir::AbstractString)
 end
 
 function reflect_default()::Cint
-    prompt_reflection(; dir=DEFAULT_SAVE_DIR)
+    prompt_reflection(; dir=DEFAULT_SAVE_DIR, template_dir=DEFAULT_TEMPLATE_DIR)
     println("(Hit `Enter` to close)")
     readline()
     return 0 # if things finished successfully
