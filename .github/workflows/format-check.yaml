@@ -2,9 +2,10 @@ name: Format Check
 on:
   push:
     branches:
-      - 'main'
+      - "main"
       - /^release-.*$/
-    tags: '*'
+    tags:
+      - "*"
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
 jobs:
@@ -16,7 +17,7 @@ jobs:
     strategy:
       matrix:
         julia-version:
-          - '1.9'
+          - "1.9"
     steps:
       - uses: julia-actions/setup-julia@latest
         with:
